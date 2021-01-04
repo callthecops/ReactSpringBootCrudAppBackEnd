@@ -1,6 +1,8 @@
 package com.example.CarDatabase.controller;
 
 import com.example.CarDatabase.model.Car;
+import com.example.CarDatabase.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,16 +11,16 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/cars")
 public class CarController {
 
+    @Autowired
+    private CarService carService;
+
     @PostMapping("/submit")
-    public void submitNewCar(@RequestParam("image")MultipartFile file, @RequestParam("mark") String mark,
+    public void submitNewCar(@RequestPart("image")byte[] file, @RequestParam("mark") String mark,
                              @RequestParam("model")String model,@RequestParam("year")String year,
                              @RequestParam("fuel")String fuel,@RequestParam("price")String price){
 
-
         Car myCar = new Car(mark,model,year,fuel,price,file);
-        System.out.println(myCar.getFuel());
-        System.out.println(myCar.getMark());
-        System.out.println(myCar.getModel());
+        carService.saveCar(myCar);
 
     }
 
