@@ -5,6 +5,7 @@ import com.example.CarDatabase.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Communication SERVER-CLIENT is very important in REST application so we always have to send a response back to the
@@ -32,7 +33,7 @@ public class CarController {
 
     @CrossOrigin
     @GetMapping("/getCars")
-    public List<Car> getAllCars(){
+    public List<Car> getAllCars() {
         List<Car> carList = carService.getCarList();
 
         return carList;
