@@ -39,5 +39,23 @@ public class CarController {
         return carList;
     }
 
+    @CrossOrigin
+    @GetMapping("/getCar/{id}")
+    public Car getCar(@PathVariable("id")long id){
+        return carService.getCar(id);
+    }
+
+
+    @CrossOrigin
+    @PostMapping("/deleteCar/{id}")
+    public void deleteCar(@PathVariable("id") long id){
+        carService.deleteCar(id);
+    }
+
+//    @CrossOrigin
+//    @PostMapping("/updateCar/{id}")
+//    public void updateCar(){
+//        carService.saveCar
+//    }
 
 }
